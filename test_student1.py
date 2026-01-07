@@ -1,31 +1,24 @@
-from student1 import calculate_grade
+# test_app.py
+from app import calculate_grade, calculate_average
 
 def test_grade_S():
-    avg = 95
-    assert calculate_grade(avg) == "S"
+    assert calculate_grade(95) == "S"
 
 def test_grade_A():
-    avg = 85
-    assert calculate_grade(avg) == "A"
+    assert calculate_grade(85) == "A"
 
 def test_grade_B():
-    avg = 70
-    assert calculate_grade(avg) == "B"
+    assert calculate_grade(70) == "B"
 
 def test_grade_C():
-    avg = 55
-    assert calculate_grade(avg) == "C"
+    assert calculate_grade(55) == "C"
 
 def test_grade_D():
-    avg = 45
-    assert calculate_grade(avg) == "D"
+    assert calculate_grade(45) == "D"
 
 def test_grade_F():
-    avg = 30
-    assert calculate_grade(avg) == "F"
-
+    assert calculate_grade(30) == "F"
 
 def test_average_calculation():
-    marks = [85, 90, 88]
-    average = sum(marks) / len(marks)
-    assert round(average, 2) == 87.67
+    marks = [80, 90, 100]
+    assert calculate_average(marks) == 90

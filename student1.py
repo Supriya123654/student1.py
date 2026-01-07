@@ -1,59 +1,58 @@
-# Student Grade Calculator (Docker + Jenkins)
+# Program to calculate student grade
 
-def calculate_grade(avg):
-    if 90 <= avg <= 100:
+def calculate_average(m1, m2, m3):
+    return (m1 + m2 + m3) / 3
+
+
+def assign_grade(avg):
+    if avg >= 90:
         return "S"
-    elif 80 <= avg < 90:
+    elif avg >= 80:
         return "A"
-    elif 65 <= avg < 80:
+    elif avg >= 65:
         return "B"
-    elif 50 <= avg < 65:
+    elif avg >= 50:
         return "C"
-    elif 40 <= avg < 50:
+    elif avg >= 40:
         return "D"
     else:
         return "F"
 
 
-def print_grade_criteria():
-    print("\n--- Grade Criteria ---")
-    print("90 - 100 : Grade S")
-    print("80 - 89  : Grade A")
-    print("65 - 79  : Grade B")
-    print("50 - 64  : Grade C")
-    print("40 - 49  : Grade D")
-    print("Below 40 : Grade F")
+if __name__ == "__main__":
+    import sys
+    print("=== Student Grade Calculator ===")
 
+    try:
+        # If user gives input through command line
+        if len(sys.argv) == 7:
+            name = sys.argv[1]
+            department = sys.argv[2]
+            semester = int(sys.argv[3])
+            m1 = float(sys.argv[4])
+            m2 = float(sys.argv[5])
+            m3 = float(sys.argv[6])
 
-# ---------------- MAIN ----------------
+        else:
+            # Take user input
+            name = input("Enter Student Name: ")
+            department = input("Enter Department: ")
+            semester = int(input("Enter Semester: "))
+            m1 = float(input("Enter marks in Subject 1: "))
+            m2 = float(input("Enter marks in Subject 2: "))
+            m3 = float(input("Enter marks in Subject 3: "))
 
-# Predefined student details
-student = {
-    "name": "Sahana",
-    "department": "BCA",
-    "semester": 3,
-    "marks": [90, 90, 90]
-}
+        print("\n=== Program Parameters ===")
+        print(f"Student Name : {name}")
+        print(f"Department   : {department}")
+        print(f"Semester     : {semester}")
+        print(f"Marks        : {m1}, {m2}, {m3}")
 
-# Calculate average
-average = sum(student["marks"]) / len(student["marks"])
+        average = calculate_average(m1, m2, m3)
+        grade = assign_grade(average)
 
-# Assign grade
-grade = calculate_grade(average)
+        print(f"\nAverage = {average:.2f}")
+        print(f"Grade   = {grade}")
 
-# Print grade criteria (KEY LINE)
-print_grade_criteria()
-
-# Display student details
-print("\n--- Student Details ---")
-print("Name:", student["name"])
-print("Department:", student["department"])
-print("Semester:", student["semester"])
-
-print("\n--- Subject Marks ---")
-print("Subject 1:", student["marks"][0])
-print("Subject 2:", student["marks"][1])
-print("Subject 3:", student["marks"][2])
-
-print("\nAverage Marks:", round(average, 2))
-print("Final Grade:", grade)
+    except ValueError:
+        print("Invalid input. Please enter valid numeric values.")
