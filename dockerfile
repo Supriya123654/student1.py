@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install pytest
 
 # Copy the current directory contents into the container at /app
-COPY . student1.py.
+COPY . .
 
 # Run the script
-CMD ["python", "docker_student1.py"]
+CMD ["python", "student1.py"]
